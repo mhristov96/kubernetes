@@ -24,7 +24,7 @@ spec:
             - name: vprodb
               containerPort: 3306
           env:
-            - name: MQSQL_ROOT_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: app-secret
@@ -39,7 +39,7 @@ spec:
       initContainers:
         - name: busybox
           image: busybox:latest
-          args: ["rm", "rf", "/var/lib/mysql/lost+found"]
+          args: ["rm", "-rf", "/var/lib/mysql/lost+found"]
           volumeMounts:
             - name: vpro-db-data
               mountPath: /var/lib/mysql
